@@ -3,8 +3,9 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 import profileIcon from '../images/profileIcon.svg';
 import searchIcon from '../images/searchIcon.svg';
+import SearchBar from './SearchBar';
 
-export default function Header({ pageName, showSerachIcon }) {
+export default function Header({ pageName, showSerachIcon, fetchFunction }) {
   const [showSearchBar, setShowSearchBar] = useState(false);
 
   return (
@@ -28,7 +29,7 @@ export default function Header({ pageName, showSerachIcon }) {
         </button>
       )}
       <br />
-      {showSearchBar && <input data-testid="search-input" />}
+      {showSearchBar && <SearchBar fetchFunction={ fetchFunction } />}
     </header>
   );
 }
@@ -36,4 +37,5 @@ export default function Header({ pageName, showSerachIcon }) {
 Header.propTypes = {
   pageName: PropTypes.string.isRequired,
   showSerachIcon: PropTypes.bool.isRequired,
+  fetchFunction: PropTypes.func.isRequired,
 };
