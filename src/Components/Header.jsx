@@ -37,5 +37,9 @@ export default function Header({ pageName, showSerachIcon, fetchFunction }) {
 Header.propTypes = {
   pageName: PropTypes.string.isRequired,
   showSerachIcon: PropTypes.bool.isRequired,
-  fetchFunction: PropTypes.func.isRequired,
+  fetchFunction: PropTypes.func,
+};
+
+Header.defaultProps = {
+  fetchFunction: undefined,
 };

@@ -3,6 +3,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import Header from '../../Components/Header';
 import Context from '../../Context/Context';
 import Cards from '../../Components/Cards';
+import Footer from '../../Components/Footer';
 
 export default function Meals(props) {
   const { fetchAPIMeals, Recipes, setRecipes } = useContext(Context);
@@ -31,6 +32,7 @@ export default function Meals(props) {
     <div>
       <Header pageName="Comidas" showSerachIcon fetchFunction={ fetchAPIMeals } />
       {canRenderCards && <Cards recipes={ Recipes.meals } type="Meal" />}
+      <Footer />
     </div>
   );
 }

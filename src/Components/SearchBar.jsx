@@ -62,4 +62,8 @@ export default function SearchBar({ fetchFunction }) {
 
 SearchBar.propTypes = {
   fetchFunction: PropTypes.func,
-}.isRequired;
+};
+
+SearchBar.defaultProps = {
+  fetchFunction: undefined,
+};
