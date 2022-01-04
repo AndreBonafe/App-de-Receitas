@@ -10,10 +10,10 @@ function Provider({ children }) {
     filter: '',
   });
 
+  const [Recipes, setRecipes] = useState({});
+
   const fetchAPIMeals = async () => {
     const { input, filter } = SearchValues;
-
-    let meals = '';
 
     if (input.length > 1 && filter === PRIMEIRA_LETRA) {
       return global.alert('Sua busca deve conter somente 1 (um) caracter');
@@ -21,49 +21,46 @@ function Provider({ children }) {
 
     switch (filter) {
     case 'Ingrediente':
-      meals = await fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?i=${input}`)
-        .then((response) => response.json());
+      setRecipes(await fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?i=${input}`)
+        .then((response) => response.json()));
       break;
     case 'Nome':
-      meals = await fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${input}`)
-        .then((response) => response.json());
+      setRecipes(await fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${input}`)
+        .then((response) => response.json()));
       break;
     case PRIMEIRA_LETRA:
-      meals = await fetch(`https://www.themealdb.com/api/json/v1/1/search.php?f=${input}`)
-        .then((response) => response.json());
+      setRecipes(await fetch(`https://www.themealdb.com/api/json/v1/1/search.php?f=${input}`)
+        .then((response) => response.json()));
       break;
-    default: meals = '';
+    default: return '';
     }
 
-    console.log(meals);
+    console.log(Recipes.meals);
   };
 
   const fetchAPIDrinks = async () => {
     const { input, filter } = SearchValues;
 
-    let drinks = '';
-
     if (input.length > 1 && filter === PRIMEIRA_LETRA) {
       return global.alert('Sua busca deve conter somente 1 (um) caracter');
     }
 
     switch (filter) {
     case 'Ingrediente':
-      drinks = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${input}`)
-        .then((response) => response.json());
+      setRecipes(await fetch(`https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${input}`)
+        .then((response) => response.json()));
       break;
     case 'Nome':
-      drinks = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${input}`)
-        .then((response) => response.json());
+      setRecipes(await fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${input}`)
+        .then((response) => response.json()));
       break;
     case PRIMEIRA_LETRA:
-      drinks = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?f=${input}`)
-        .then((response) => response.json());
+      setRecipes(await fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?f=${input}`)
+        .then((response) => response.json()));
       break;
-    default: drinks = '';
+    default: return '';
     }
-
-    console.log(drinks);
+    console.log(Recipes.drinks);
   };
 
   const store = {
@@ -71,6 +68,8 @@ function Provider({ children }) {
     setSearchValues,
     fetchAPIMeals,
     fetchAPIDrinks,
+    Recipes,
+    setRecipes,
   };
 
   return (
