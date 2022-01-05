@@ -3,7 +3,7 @@ import React, { useContext } from 'react';
 import Context from '../Context/Context';
 
 export default function SearchBar({ fetchFunction }) {
-  const { setSearchValues, SearchValues } = useContext(Context);
+  const { setSearchValues, SearchValues, setCanRedirect } = useContext(Context);
 
   return (
     <div>
@@ -52,7 +52,10 @@ export default function SearchBar({ fetchFunction }) {
       <button
         type="button"
         data-testid="exec-search-btn"
-        onClick={ fetchFunction }
+        onClick={ () => {
+          setCanRedirect(true);
+          fetchFunction();
+        } }
       >
         Buscar
       </button>
