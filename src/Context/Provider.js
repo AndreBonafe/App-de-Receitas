@@ -12,6 +12,12 @@ function Provider({ children }) {
 
   const [Recipes, setRecipes] = useState({});
 
+  const [Categories, setCategories] = useState({});
+
+  const [canRedirect, setCanRedirect] = useState(false);
+
+  const [filterCategory, setFilterCategory] = useState('');
+
   const fetchAPIMeals = async () => {
     const { input, filter } = SearchValues;
 
@@ -63,6 +69,36 @@ function Provider({ children }) {
     console.log(Recipes.drinks);
   };
 
+  const fetchMeals = async () => {
+    setRecipes(await fetch('https://www.themealdb.com/api/json/v1/1/search.php?s=')
+      .then((response) => response.json()));
+  };
+
+  const fetchDrinks = async () => {
+    setRecipes(await fetch('https://www.thecocktaildb.com/api/json/v1/1/search.php?s=')
+      .then((response) => response.json()));
+  };
+
+  const fetchCategoriesMeals = async () => {
+    setCategories(await fetch('https://www.themealdb.com/api/json/v1/1/list.php?c=list')
+      .then((response) => response.json()));
+  };
+
+  const fetchCategoriesDrinks = async () => {
+    setCategories(await fetch('https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list')
+      .then((response) => response.json()));
+  };
+
+  const fetchMealByCategory = async (category) => {
+    setRecipes(await fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?c=${category}`)
+      .then((response) => response.json()));
+  };
+
+  const fetchDrinksByCategory = async (category) => {
+    setRecipes(await fetch(`https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=${category}`)
+      .then((response) => response.json()));
+  };
+
   const store = {
     SearchValues,
     setSearchValues,
@@ -70,6 +106,17 @@ function Provider({ children }) {
     fetchAPIDrinks,
     Recipes,
     setRecipes,
+    fetchMeals,
+    fetchDrinks,
+    Categories,
+    fetchCategoriesMeals,
+    fetchCategoriesDrinks,
+    fetchMealByCategory,
+    fetchDrinksByCategory,
+    canRedirect,
+    setCanRedirect,
+    filterCategory,
+    setFilterCategory,
   };
 
   return (
