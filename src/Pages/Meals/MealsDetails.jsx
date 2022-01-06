@@ -1,14 +1,19 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+// import Context from '../../Context/Context';
 
 export default function MealsDetails(props) {
   const { match } = props;
   const { id } = match.params;
-  console.log(id);
+
+  // const { Recipes } = useContext(Context);
 
   return (
     <div>
-      <h1>Food Details</h1>
+      {/* {Recipes.meals.filter((c) => c.idMeal === id).map((curr) => (
+        <img src={ curr.strMealThumb } alt="a" key={ curr.strMealThumb } />
+      ))} */}
+      {id}
     </div>
   );
 }
