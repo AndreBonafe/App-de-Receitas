@@ -1,0 +1,14 @@
+.btn-start {
+  bottom: 0;
+  position: fixed;
+  text-align: center;
+  z-index: 10;
+}
+
+.hidden {
+  display: none;
+}
+
+.img-recipe {
+  height: 100px;
+}

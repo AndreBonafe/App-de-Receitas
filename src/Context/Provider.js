@@ -18,6 +18,15 @@ function Provider({ children }) {
 
   const [filterCategory, setFilterCategory] = useState('');
 
+  const [Detail, setDetail] = useState({});
+
+  const [inProgress, setInProgress] = useState({
+    cocktails: {},
+    meals: {},
+  });
+
+  const [favoritesRecipes, setFavoritesRecipes] = useState([]);
+
   const fetchAPIMeals = async () => {
     const { input, filter } = SearchValues;
 
@@ -99,6 +108,16 @@ function Provider({ children }) {
       .then((response) => response.json()));
   };
 
+  const fetchDetailsMeals = async (id) => {
+    setDetail(await fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`)
+      .then((response) => response.json()));
+  };
+
+  const fetchDetailsDrinks = async (id) => {
+    setDetail(await fetch(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${id}`)
+      .then((response) => response.json()));
+  };
+
   const store = {
     SearchValues,
     setSearchValues,
@@ -117,6 +136,13 @@ function Provider({ children }) {
     setCanRedirect,
     filterCategory,
     setFilterCategory,
+    fetchDetailsMeals,
+    fetchDetailsDrinks,
+    Detail,
+    setInProgress,
+    inProgress,
+    favoritesRecipes,
+    setFavoritesRecipes,
   };
 
   return (
