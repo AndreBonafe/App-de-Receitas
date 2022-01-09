@@ -1,26 +1,22 @@
 import PropTypes from 'prop-types';
 import React, { useContext, useEffect, useState } from 'react';
 import Context from '../../Context/Context';
-import shareIcon from '../../images/shareIcon.svg';
-import blackHeartIcon from '../../images/blackHeartIcon.svg';
-import whiteHeartIcon from '../../images/whiteHeartIcon.svg';
+// import shareIcon from '../../images/shareIcon.svg';
+// import blackHeartIcon from '../../images/blackHeartIcon.svg';
+// import whiteHeartIcon from '../../images/whiteHeartIcon.svg';
 import RecomendedCards from '../../Components/RecomendedCards';
 import '../../styles/Details.css';
+import ShareAndFavoriteBtn from '../../Components/ShareAndFavoriteBtn';
 
 export default function MealsDetails(props) {
   const { match, history } = props;
   const { id } = match.params;
-  const TIME = 800;
   const TIME_REDIRECT = 200;
 
   const { Detail, fetchDetailsMeals, inProgress, setInProgress,
     fetchDrinks, Recipes, favoritesRecipes, setFavoritesRecipes } = useContext(Context);
 
   const [canRenderDatails, setCanRenderDetails] = useState(false);
-
-  const [showMessageCopy, setShowMessageCopy] = useState(false);
-
-  const [canSave, setCanSave] = useState(false);
 
   const [canSaveProgress, setCanSaveProgress] = useState(false);
 
@@ -31,18 +27,12 @@ export default function MealsDetails(props) {
     }
     if (Detail.meals !== undefined
       && Recipes.drinks !== undefined) setCanRenderDetails(true);
-    if (showMessageCopy) setTimeout(() => setShowMessageCopy(false), TIME);
-    if (canSave) {
-      localStorage.setItem('favoriteRecipes',
-        JSON.stringify(favoritesRecipes));
-      setCanSave(false);
-    }
     if (canSaveProgress) {
       localStorage.setItem('inProgressRecipes',
         JSON.stringify(inProgress));
     }
-  }, [fetchDetailsMeals, setCanRenderDetails, showMessageCopy,
-    Detail, id, Recipes, fetchDrinks, canSave, favoritesRecipes,
+  }, [fetchDetailsMeals, setCanRenderDetails,
+    Detail, id, Recipes, fetchDrinks, favoritesRecipes,
     canSaveProgress, inProgress]);
 
   useEffect(() => {
@@ -54,36 +44,20 @@ export default function MealsDetails(props) {
     }
   }, [setFavoritesRecipes, setInProgress]);
 
-  function redirect() {
-    // Ingredients.map((Ing, i) => (
-    //   setIngredientsRecipe([...ingredientsRecipe,
-    //     Detail.meals[0][Ing], Detail.meals[0][Measures[i]]])
-    // ));
-    // console.log(Detail.meals[0][Measures[0]]);
+  function redirect(Ingredients, Measures) {
+    console.log(Detail.meals[0][Ingredients[0]], Detail.meals[0][Measures[0]]);
     setInProgress({
       ...inProgress,
-      meals: { ...inProgress.meals, [id]: [] },
+      meals: { ...inProgress.meals,
+        [id]: Ingredients.map((ing, i) => {
+          if (Detail.meals[0][ing] !== '' && Detail.meals[0][ing] !== null) {
+            return (`${Detail.meals[0][ing]} ${Detail.meals[0][Measures[i]]}`);
+          }
+          return '';
+        }).filter((c) => c !== '') },
     });
     setCanSaveProgress(true);
     setTimeout(() => history.push(`/comidas/${id}/in-progress`), TIME_REDIRECT);
-  }
-
-  function handleClickFavorite(category, area, name, image) {
-    if (!favoritesRecipes.some((c) => c.id === id)) {
-      const newObj = {
-        id,
-        type: 'comida',
-        area,
-        category,
-        alcoholicOrNot: '',
-        name,
-        image,
-      };
-      setFavoritesRecipes([...favoritesRecipes, newObj]);
-    } else {
-      setFavoritesRecipes(favoritesRecipes.filter((c) => c.id !== id));
-    }
-    setCanSave(true);
   }
 
   return (
@@ -103,34 +77,16 @@ export default function MealsDetails(props) {
               className="img-recipe"
             />
             <h4 data-testid="recipe-category">{`Category: ${curr.strCategory}`}</h4>
-            <div>
-              <button
-                type="button"
-                onClick={ () => {
-                  navigator.clipboard.writeText(`http://localhost:3000${history.location.pathname}`);
-                  setShowMessageCopy(true);
-                } }
-              >
-                <img
-                  data-testid="share-btn"
-                  src={ shareIcon }
-                  alt="share-icon"
-                />
-              </button>
-              {showMessageCopy && <span>Link copiado!</span>}
-              <button
-                type="button"
-                onClick={ () => handleClickFavorite(curr.strCategory,
-                  curr.strArea, curr.strMeal, curr.strMealThumb) }
-              >
-                <img
-                  data-testid="favorite-btn"
-                  src={ favoritesRecipes.some((c) => c.id === id)
-                    ? blackHeartIcon : whiteHeartIcon }
-                  alt="favorite-icon"
-                />
-              </button>
-            </div>
+            <ShareAndFavoriteBtn
+              link={ history.location.pathname }
+              categoryP={ curr.strCategory }
+              areaP={ curr.strArea }
+              alcoholicOrNotP=""
+              nameP={ curr.strMeal }
+              imageP={ curr.strMealThumb }
+              id={ id }
+              recipe="meal"
+            />
             <ul>
               {Ingredients.map((Ing, i) => {
                 if (curr[Ing] !== '') {
@@ -150,7 +106,7 @@ export default function MealsDetails(props) {
               data-testid="start-recipe-btn"
               type="button"
               className="btn-start"
-              onClick={ redirect }
+              onClick={ () => redirect(Ingredients, Measures) }
             >
               {Object.keys(inProgress.meals).includes(id)
                 ? 'Continuar Receita' : 'Começar Receita'}
