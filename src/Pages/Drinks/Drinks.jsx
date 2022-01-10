@@ -54,6 +54,18 @@ export default function Drinks(props) {
     <div>
       <Header pageName="Bebidas" showSerachIcon fetchFunction={ fetchAPIDrinks } />
       {canRenderCategories && Categories.drinks !== undefined && (
+        <button
+          onClick={ () => {
+            setFilterCategory('');
+            fetchDrinks();
+          } }
+          data-testid="All-category-filter"
+          type="button"
+        >
+          All
+        </button>
+      )}
+      {canRenderCategories && Categories.drinks !== undefined && (
         Categories.drinks.map((curr, index) => (
           index <= MAX_CATEGORIES && (
             <button
@@ -67,7 +79,6 @@ export default function Drinks(props) {
       {canRenderCards && Recipes.drinks !== null && (
         <Cards recipes={ Recipes.drinks } type="Drink" link="bebidas" />
       )}
-      {console.log(Recipes)}
       <Footer />
     </div>
   );

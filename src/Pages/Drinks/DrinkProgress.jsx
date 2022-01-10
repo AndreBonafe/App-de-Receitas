@@ -71,8 +71,13 @@ export default function DrinkProgress(props) {
 
   useEffect(() => {
     if (checkboxes[id] === undefined) {
-      setCheckboxes({ ...JSON.parse(localStorage.getItem('checkboxes')),
-        [id]: { ...JSON.parse(localStorage.getItem('checkboxes'))[id] } });
+      if (JSON.parse(localStorage.getItem('checkboxes')) === null) {
+        setCheckboxes({ ...JSON.parse(localStorage.getItem('checkboxes')),
+          [id]: {} });
+      } else {
+        setCheckboxes({ ...JSON.parse(localStorage.getItem('checkboxes')),
+          [id]: { ...JSON.parse(localStorage.getItem('checkboxes'))[id] } });
+      }
     }
   }, [checkboxes, setCheckboxes, id]);
 
@@ -163,7 +168,6 @@ export default function DrinkProgress(props) {
           </button>
           <h4>Instructions:</h4>
           <p data-testid="instructions">{Detail.drinks[0].strInstructions}</p>
-          {console.log('a')}
         </>
       )}
     </div>

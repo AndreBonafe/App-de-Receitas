@@ -54,6 +54,18 @@ export default function Meals(props) {
     <div>
       <Header pageName="Comidas" showSerachIcon fetchFunction={ fetchAPIMeals } />
       {canRenderCategories && Categories.meals !== undefined && (
+        <button
+          onClick={ () => {
+            setFilterCategory('');
+            fetchMeals();
+          } }
+          data-testid="All-category-filter"
+          type="button"
+        >
+          All
+        </button>
+      )}
+      {canRenderCategories && Categories.meals !== undefined && (
         Categories.meals.map((curr, index) => (
           index <= MAX_CATEGORIES && (
             <button
