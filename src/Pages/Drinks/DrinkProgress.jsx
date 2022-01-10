@@ -3,19 +3,22 @@ import React, { useContext, useEffect, useState } from 'react';
 import ShareAndFavoriteBtn from '../../Components/ShareAndFavoriteBtn';
 import Context from '../../Context/Context';
 import '../../styles/Progress.css';
+import getCurrentDate from '../../functions/getCurrentDate';
 
 export default function DrinkProgress(props) {
   const { match, history } = props;
   const { id } = match.params;
+  const TIME = 200;
 
   const [canRender, setCanRender] = useState(false);
 
-  const [checkboxes, setCheckboxes] = useState({});
-
   const [canSaveCheckBox, setCanSaveCheckbox] = useState(false);
 
+  const [canSaveDone, setCanSaveDone] = useState(false);
+
   const { setInProgress, fetchDetailsDrinks, inProgress,
-    Detail, favoritesRecipes, setFavoritesRecipes } = useContext(Context);
+    Detail, favoritesRecipes, setFavoritesRecipes, doneRecipes,
+    setDoneRecipes, checkboxes, setCheckboxes } = useContext(Context);
 
   useEffect(() => {
     if (Detail.drinks === undefined || Detail.drinks[0].idDrink !== id) {
@@ -43,8 +46,13 @@ export default function DrinkProgress(props) {
       localStorage.setItem('checkboxes', JSON.stringify(checkboxes));
       setCanSaveCheckbox(false);
     }
+    if (canSaveDone) {
+      localStorage.setItem('doneRecipes', JSON.stringify(doneRecipes));
+      setCanSaveDone(false);
+    }
   }, [Detail, fetchDetailsDrinks, id, favoritesRecipes,
-    setInProgress, inProgress, canSaveCheckBox, checkboxes]);
+    setInProgress, inProgress, canSaveCheckBox, checkboxes,
+    canSaveDone, doneRecipes]);
 
   useEffect(() => {
     if (localStorage.getItem('inProgressRecipes') !== null) {
@@ -56,7 +64,38 @@ export default function DrinkProgress(props) {
     if (localStorage.getItem('checkboxes') !== null) {
       setCheckboxes(JSON.parse(localStorage.getItem('checkboxes')));
     }
-  }, [setInProgress, setFavoritesRecipes]);
+    if (localStorage.getItem('doneRecipes') !== null) {
+      setDoneRecipes(JSON.parse(localStorage.getItem('doneRecipes')));
+    }
+  }, [setInProgress, setFavoritesRecipes, setDoneRecipes, setCheckboxes]);
+
+  useEffect(() => {
+    if (checkboxes[id] === undefined) {
+      setCheckboxes({ ...JSON.parse(localStorage.getItem('checkboxes')),
+        [id]: { ...JSON.parse(localStorage.getItem('checkboxes'))[id] } });
+    }
+  }, [checkboxes, setCheckboxes, id]);
+
+  function addToDoneAndRedirect() {
+    const { idDrink, strAlcoholic, strCategory,
+      strDrink, strDrinkThumb } = Detail.drinks[0];
+    if (!doneRecipes.some((c) => c.id === id)) {
+      const newObj = {
+        id: idDrink,
+        type: 'bebida',
+        area: '',
+        category: strCategory,
+        alcoholicOrNot: strAlcoholic,
+        name: strDrink,
+        image: strDrinkThumb,
+        doneDate: getCurrentDate(),
+        tags: [],
+      };
+      setDoneRecipes([...doneRecipes, newObj]);
+    }
+    setCanSaveDone(true);
+    setTimeout(() => history.push('/receitas-feitas'), TIME);
+  }
 
   return (
     <div>
@@ -87,21 +126,24 @@ export default function DrinkProgress(props) {
               <li key={ i } data-testid={ `${i}-ingredient-step` }>
                 <label
                   htmlFor={ i }
-                  className={ checkboxes[i] ? 'checked' : 'unchecked' }
+                  className={ checkboxes[id] !== undefined && checkboxes[id][i]
+                    ? 'checked' : 'unchecked' }
                 >
                   <input
                     type="checkbox"
                     id={ i }
                     onClick={ () => {
-                      if (checkboxes[i]) {
-                        setCheckboxes({ ...checkboxes, [i]: false });
+                      if (checkboxes[id] !== undefined && checkboxes[id][i]) {
+                        setCheckboxes({ ...checkboxes,
+                          [id]: { ...checkboxes[id], [i]: false } });
                         setCanSaveCheckbox(true);
                       } else {
-                        setCheckboxes({ ...checkboxes, [i]: true });
+                        setCheckboxes({ ...checkboxes,
+                          [id]: { ...checkboxes[id], [i]: true } });
                         setCanSaveCheckbox(true);
                       }
                     } }
-                    checked={ checkboxes[i] }
+                    defaultChecked={ checkboxes[id] !== undefined && checkboxes[id][i] }
                   />
                   { ing }
                 </label>
@@ -112,10 +154,10 @@ export default function DrinkProgress(props) {
             type="button"
             data-testid="finish-recipe-btn"
             disabled={
-              !(Object.keys(checkboxes).length === inProgress.cocktails[id].length
-              && Object.values(checkboxes).every((e) => e === true))
+              !(Object.keys(checkboxes[id]).length === inProgress.cocktails[id].length
+              && Object.values(checkboxes[id]).every((e) => e === true))
             }
-            onClick={ () => history.push('/receitas-feitas') }
+            onClick={ addToDoneAndRedirect }
           >
             Finalizar Receita
           </button>
