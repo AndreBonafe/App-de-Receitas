@@ -30,6 +30,11 @@ function Provider({ children }) {
   const [favoritesRecipes, setFavoritesRecipes] = useState([]);
 
   const [ingredientsList, setIngredientsList] = useState([]);
+  const [doneRecipes, setDoneRecipes] = useState([]);
+
+  const [checkboxes, setCheckboxes] = useState({});
+
+  const [canRenderCategories, setcanRenderCategories] = useState(false);
 
   const fetchAPIMeals = async () => {
     const { input, filter } = SearchValues;
@@ -174,6 +179,13 @@ function Provider({ children }) {
     fetchMealIngredients,
     ingredientsList,
     fetchDrinksIngredients,
+    doneRecipes,
+    setDoneRecipes,
+    checkboxes,
+    setCheckboxes,
+    canRenderCategories,
+    setcanRenderCategories,
+    setCategories,
   };
 
   return (

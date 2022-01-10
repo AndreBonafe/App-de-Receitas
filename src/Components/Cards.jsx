@@ -9,8 +9,8 @@ export default function Cards({ recipes, type, link }) {
     <div>
       {recipes && recipes.map((curr, index) => (
         index <= MAX_CARDS && (
-          <Link to={ `/${link}/${curr[`id${type}`]}` }>
-            <div key={ curr[`id${type}`] } data-testid={ `${index}-recipe-card` }>
+          <Link to={ `/${link}/${curr[`id${type}`]}` } key={ curr[`id${type}`] }>
+            <div data-testid={ `${index}-recipe-card` }>
               <img
                 src={ curr[`str${type}Thumb`] }
                 alt={ `${curr[`str${type}`]}` }

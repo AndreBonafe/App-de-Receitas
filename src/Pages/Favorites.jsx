@@ -31,7 +31,7 @@ export default function Favorites() {
 
   return (
     <div>
-      <Header pageName="Receitas Feitas" showSerachIcon={ false } />
+      <Header pageName="Receitas Favoritas" showSerachIcon={ false } />
       <button
         type="button"
         data-testid="filter-by-all-btn"

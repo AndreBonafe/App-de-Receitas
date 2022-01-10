@@ -114,7 +114,6 @@ export default function DrinksDetails(props) {
               type="Meal"
               link="comidas"
             />
-            {console.log(Detail.drinks[0])}
           </div>
         );
       })}

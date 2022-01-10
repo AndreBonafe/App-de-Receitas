@@ -3,19 +3,22 @@ import React, { useContext, useEffect, useState } from 'react';
 import ShareAndFavoriteBtn from '../../Components/ShareAndFavoriteBtn';
 import Context from '../../Context/Context';
 import '../../styles/Progress.css';
+import getCurrentDate from '../../functions/getCurrentDate';
 
 export default function MealsProgress(props) {
   const { match, history } = props;
   const { id } = match.params;
+  const TIME = 500;
 
   const [canRender, setCanRender] = useState(false);
 
-  const [checkboxes, setCheckboxes] = useState({});
-
   const [canSaveCheckBox, setCanSaveCheckbox] = useState(false);
 
+  const [canSaveDone, setCanSaveDone] = useState(false);
+
   const { setInProgress, fetchDetailsMeals, inProgress,
-    Detail, favoritesRecipes, setFavoritesRecipes } = useContext(Context);
+    Detail, favoritesRecipes, setFavoritesRecipes,
+    doneRecipes, setDoneRecipes, checkboxes, setCheckboxes } = useContext(Context);
 
   useEffect(() => {
     if (Detail.meals === undefined || Detail.meals[0].idMeal !== id) {
@@ -43,8 +46,13 @@ export default function MealsProgress(props) {
       localStorage.setItem('checkboxes', JSON.stringify(checkboxes));
       setCanSaveCheckbox(false);
     }
+    if (canSaveDone) {
+      localStorage.setItem('doneRecipes', JSON.stringify(doneRecipes));
+      setCanSaveDone(false);
+    }
   }, [Detail, fetchDetailsMeals, id, favoritesRecipes,
-    setInProgress, inProgress, canSaveCheckBox, checkboxes]);
+    setInProgress, inProgress, canSaveCheckBox, checkboxes, canSaveDone,
+    doneRecipes]);
 
   useEffect(() => {
     if (localStorage.getItem('inProgressRecipes') !== null) {
@@ -56,7 +64,43 @@ export default function MealsProgress(props) {
     if (localStorage.getItem('checkboxes') !== null) {
       setCheckboxes(JSON.parse(localStorage.getItem('checkboxes')));
     }
-  }, [setInProgress, setFavoritesRecipes]);
+    if (localStorage.getItem('doneRecipes') !== null) {
+      setDoneRecipes(JSON.parse(localStorage.getItem('doneRecipes')));
+    }
+  }, [setInProgress, setFavoritesRecipes, setDoneRecipes, setCheckboxes]);
+
+  useEffect(() => {
+    if (checkboxes[id] === undefined) {
+      if (JSON.parse(localStorage.getItem('checkboxes')) === null) {
+        setCheckboxes({ ...JSON.parse(localStorage.getItem('checkboxes')),
+          [id]: {} });
+      } else {
+        setCheckboxes({ ...JSON.parse(localStorage.getItem('checkboxes')),
+          [id]: { ...JSON.parse(localStorage.getItem('checkboxes'))[id] } });
+      }
+    }
+  }, [checkboxes, setCheckboxes, id]);
+
+  function addToDoneAndRedirect() {
+    const { idMeal, strArea, strCategory,
+      strMeal, strMealThumb, strTags } = Detail.meals[0];
+    if (!doneRecipes.some((c) => c.id === id)) {
+      const newObj = {
+        id: idMeal,
+        type: 'comida',
+        area: strArea,
+        category: strCategory,
+        alcoholicOrNot: '',
+        name: strMeal,
+        image: strMealThumb,
+        doneDate: getCurrentDate(),
+        tags: strTags === null ? [] : strTags.split(' '),
+      };
+      setDoneRecipes([...doneRecipes, newObj]);
+    }
+    setCanSaveDone(true);
+    setTimeout(() => history.push('/receitas-feitas'), TIME);
+  }
 
   return (
     <div>
@@ -87,21 +131,24 @@ export default function MealsProgress(props) {
               <li key={ i } data-testid={ `${i}-ingredient-step` }>
                 <label
                   htmlFor={ i }
-                  className={ checkboxes[i] ? 'checked' : 'unchecked' }
+                  className={ checkboxes[id] !== undefined && checkboxes[id][i]
+                    ? 'checked' : 'unchecked' }
                 >
                   <input
                     type="checkbox"
                     id={ i }
                     onClick={ () => {
-                      if (checkboxes[i]) {
-                        setCheckboxes({ ...checkboxes, [i]: false });
+                      if (checkboxes[id] !== undefined && checkboxes[id][i]) {
+                        setCheckboxes({ ...checkboxes,
+                          [id]: { ...checkboxes[id], [i]: false } });
                         setCanSaveCheckbox(true);
                       } else {
-                        setCheckboxes({ ...checkboxes, [i]: true });
+                        setCheckboxes({ ...checkboxes,
+                          [id]: { ...checkboxes[id], [i]: true } });
                         setCanSaveCheckbox(true);
                       }
                     } }
-                    checked={ checkboxes[i] }
+                    defaultChecked={ checkboxes[id] !== undefined && checkboxes[id][i] }
                   />
                   { ing }
                 </label>
@@ -112,16 +159,15 @@ export default function MealsProgress(props) {
             type="button"
             data-testid="finish-recipe-btn"
             disabled={
-              !(Object.keys(checkboxes).length === inProgress.meals[id].length
-              && Object.values(checkboxes).every((e) => e === true))
+              !(Object.keys(checkboxes[id]).length === inProgress.meals[id].length
+              && Object.values(checkboxes[id]).every((e) => e === true))
             }
-            onClick={ () => history.push('/receitas-feitas') }
+            onClick={ addToDoneAndRedirect }
           >
             Finalizar Receita
           </button>
           <h4>Instructions:</h4>
           <p data-testid="instructions">{Detail.meals[0].strInstructions}</p>
-          {console.log('a')}
         </>
       )}
     </div>
