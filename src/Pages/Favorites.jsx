@@ -80,10 +80,6 @@ export default function Favorites() {
                 {curr.name}
               </h3>
             </Link>
-            <p>{'Data de Finalização: '}</p>
-            <p data-testid={ `${i}-horizontal-done-date` }>
-              {curr.doneDate}
-            </p>
             <button
               type="button"
               onClick={ () => {
