@@ -1,9 +1,6 @@
 import PropTypes from 'prop-types';
 import React, { useContext, useEffect, useState } from 'react';
 import Context from '../../Context/Context';
-// import shareIcon from '../../images/shareIcon.svg';
-// import blackHeartIcon from '../../images/blackHeartIcon.svg';
-// import whiteHeartIcon from '../../images/whiteHeartIcon.svg';
 import RecomendedCards from '../../Components/RecomendedCards';
 import '../../styles/Details.css';
 import ShareAndFavoriteBtn from '../../Components/ShareAndFavoriteBtn';
@@ -117,7 +114,6 @@ export default function MealsDetails(props) {
               type="Drink"
               link="bebidas"
             />
-            {console.log(Detail)}
           </div>
         );
       })}
