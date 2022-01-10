@@ -25,6 +25,8 @@ function Provider({ children }) {
     meals: {},
   });
 
+  const [canSave, setCanSave] = useState(false);
+
   const [favoritesRecipes, setFavoritesRecipes] = useState([]);
 
   const fetchAPIMeals = async () => {
@@ -143,6 +145,8 @@ function Provider({ children }) {
     inProgress,
     favoritesRecipes,
     setFavoritesRecipes,
+    canSave,
+    setCanSave,
   };
 
   return (
