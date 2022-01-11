@@ -18,6 +18,7 @@ import DrinksByIngredients from './Pages/Explore/DrinksByIngredients';
 import Done from './Pages/Done';
 import Favorites from './Pages/Favorites';
 import Provider from './Context/Provider';
+import NotFound from './Pages/NotFound';
 
 function App() {
   return (
@@ -62,6 +63,7 @@ function App() {
         />
         <Route path="/receitas-feitas" component={ Done } />
         <Route path="/receitas-favoritas" component={ Favorites } />
+        <Route component={ NotFound } />
       </Switch>
     </Provider>
   );
