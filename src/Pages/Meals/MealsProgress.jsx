@@ -8,7 +8,7 @@ import getCurrentDate from '../../functions/getCurrentDate';
 export default function MealsProgress(props) {
   const { match, history } = props;
   const { id } = match.params;
-  const TIME = 200;
+  const TIME = 500;
 
   const [canRender, setCanRender] = useState(false);
 
@@ -94,7 +94,7 @@ export default function MealsProgress(props) {
         name: strMeal,
         image: strMealThumb,
         doneDate: getCurrentDate(),
-        tags: strTags.split(' '),
+        tags: strTags === null ? [] : strTags.split(' '),
       };
       setDoneRecipes([...doneRecipes, newObj]);
     }

@@ -29,6 +29,7 @@ function Provider({ children }) {
 
   const [favoritesRecipes, setFavoritesRecipes] = useState([]);
 
+  const [ingredientsList, setIngredientsList] = useState([]);
   const [doneRecipes, setDoneRecipes] = useState([]);
 
   const [checkboxes, setCheckboxes] = useState({});
@@ -126,6 +127,26 @@ function Provider({ children }) {
       .then((response) => response.json()));
   };
 
+  const fetchSurpriseMeal = async () => {
+    setDetail(await fetch('https://www.themealdb.com/api/json/v1/1/random.php')
+      .then((response) => response.json()));
+  };
+
+  const fetchSurpriseDrink = async () => {
+    setDetail(await fetch('https://www.thecocktaildb.com/api/json/v1/1/random.php')
+      .then((response) => response.json()));
+  };
+
+  const fetchMealIngredients = async () => {
+    setIngredientsList(await fetch('https://www.themealdb.com/api/json/v1/1/list.php?i=list')
+      .then((response) => response.json()));
+  };
+
+  const fetchDrinksIngredients = async () => {
+    setIngredientsList(await fetch('https://www.thecocktaildb.com/api/json/v1/1/list.php?i=list')
+      .then((response) => response.json()));
+  };
+
   const store = {
     SearchValues,
     setSearchValues,
@@ -153,6 +174,11 @@ function Provider({ children }) {
     setFavoritesRecipes,
     canSave,
     setCanSave,
+    fetchSurpriseMeal,
+    fetchSurpriseDrink,
+    fetchMealIngredients,
+    ingredientsList,
+    fetchDrinksIngredients,
     doneRecipes,
     setDoneRecipes,
     checkboxes,
