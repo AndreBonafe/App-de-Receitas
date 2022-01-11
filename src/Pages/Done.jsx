@@ -4,6 +4,7 @@ import Header from '../Components/Header';
 import Context from '../Context/Context';
 import shareIcon from '../images/shareIcon.svg';
 import '../styles/Details.css';
+import '../styles/Cards.css';
 
 export default function Done() {
   const { setDoneRecipes, doneRecipes } = useContext(Context);
@@ -49,7 +50,7 @@ export default function Done() {
       </button>
       {doneRecipes.filter((c) => (filter !== '' ? c.type === filter : c.type !== filter))
         .map((curr, i) => (
-          <div key={ i }>
+          <div key={ i } className="card-container">
             <Link
               to={ curr.type === 'comida'
                 ? `/comidas/${curr.id}` : `/bebidas/${curr.id}` }

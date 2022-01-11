@@ -4,6 +4,7 @@ import Header from '../Components/Header';
 import Context from '../Context/Context';
 import shareIcon from '../images/shareIcon.svg';
 import blackHeartIcon from '../images/blackHeartIcon.svg';
+import '../styles/Cards.css';
 
 export default function Favorites() {
   const { setFavoritesRecipes, favoritesRecipes } = useContext(Context);
@@ -56,7 +57,7 @@ export default function Favorites() {
       {favoritesRecipes
         .filter((c) => (filter !== '' ? c.type === filter : c.type !== filter))
         .map((curr, i) => (
-          <div key={ i }>
+          <div key={ i } className="card-container">
             <Link
               to={ curr.type === 'comida'
                 ? `/comidas/${curr.id}` : `/bebidas/${curr.id}` }
