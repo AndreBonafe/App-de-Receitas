@@ -67,13 +67,13 @@ export default function DrinksDetails(props) {
           .filter((key) => key.includes('Measure'));
         return (
           <div key="a">
-            <h2 data-testid="recipe-title">{curr.strDrink}</h2>
             <img
               src={ curr.strDrinkThumb }
               alt={ curr.strDrink }
-              className="img-recipe"
+              className="img-recipe2"
               data-testid="recipe-photo"
             />
+            <h2 data-testid="recipe-title">{curr.strDrink}</h2>
             <h4 data-testid="recipe-category">{`Category: ${curr.strAlcoholic}`}</h4>
             <ShareAndFavoriteBtn
               link={ history.location.pathname }
@@ -98,11 +98,11 @@ export default function DrinksDetails(props) {
               })}
             </ul>
             <h4>Instructions:</h4>
-            <p data-testid="instructions">{curr.strInstructions}</p>
+            <p className="p-details" data-testid="instructions">{curr.strInstructions}</p>
             <button
               data-testid="start-recipe-btn"
               type="button"
-              className="btn-start"
+              className="btn-start2"
               onClick={ () => redirect(Ingredients, Measures) }
             >
               {Object.keys(inProgress.cocktails).includes(id)

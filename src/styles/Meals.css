@@ -1,0 +1,13 @@
+.categoriaBTN {
+  border: none;
+  border-radius: 3px;
+  background: rgb(237, 14, 14);
+  height: 35px;
+  width: 112px;
+  padding: 4px;
+  margin: 4px;
+}
+
+.categoriaBTN :hover {
+  background: rgb(107, 14, 237);
+}

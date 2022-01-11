@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import '../styles/Login.css';
 
 export default function Login(props) {
   const [email, setEmail] = useState('');
@@ -23,34 +24,39 @@ export default function Login(props) {
   };
 
   return (
-    <div>
-      <h1>Login</h1>
-      <label htmlFor="email">
-        Email:
-        <input
-          type="text"
-          id="email"
-          data-testid="email-input"
-          onChange={ ({ target: { value } }) => setEmail(value) }
-        />
-      </label>
-      <label htmlFor="senha">
-        Senha:
-        <input
-          type="password"
-          id="senha"
-          data-testid="password-input"
-          onChange={ ({ target: { value } }) => setPassword(value) }
-        />
-      </label>
-      <button
-        type="button"
-        data-testid="login-submit-btn"
-        disabled={ validateSubmit() }
-        onClick={ handleButton }
-      >
-        Entrar
-      </button>
+    <div className="body-login">
+      <div className="center">
+        <h1>Login</h1>
+        <label htmlFor="email">
+          Email:
+          <input
+            className="input2"
+            type="text"
+            id="email"
+            data-testid="email-input"
+            onChange={ ({ target: { value } }) => setEmail(value) }
+          />
+        </label>
+        <label htmlFor="senha">
+          Senha:
+          <input
+            className="input"
+            type="password"
+            id="senha"
+            data-testid="password-input"
+            onChange={ ({ target: { value } }) => setPassword(value) }
+          />
+        </label>
+        <button
+          className="botao"
+          type="button"
+          data-testid="login-submit-btn"
+          disabled={ validateSubmit() }
+          onClick={ handleButton }
+        >
+          Entrar
+        </button>
+      </div>
     </div>
   );
 }

@@ -4,6 +4,7 @@ import shareIcon from '../images/shareIcon.svg';
 import blackHeartIcon from '../images/blackHeartIcon.svg';
 import whiteHeartIcon from '../images/whiteHeartIcon.svg';
 import Context from '../Context/Context';
+import '../styles/ShareAndFavoriteBtn.css';
 
 export default function ShareAndFavoriteBtn({ link, categoryP, areaP,
   nameP, imageP, alcoholicOrNotP, id, recipe }) {
@@ -62,6 +63,7 @@ export default function ShareAndFavoriteBtn({ link, categoryP, areaP,
   return (
     <div>
       <button
+        className="f-s-btn"
         type="button"
         onClick={ () => {
           navigator.clipboard.writeText(`http://localhost:3000${link}`);
@@ -76,6 +78,7 @@ export default function ShareAndFavoriteBtn({ link, categoryP, areaP,
       </button>
       {showMessageCopy && <span>Link copiado!</span>}
       <button
+        className="f-s-btn"
         type="button"
         onClick={ () => (recipe === 'drink'
           ? handleClickFavoriteDrink(categoryP, alcoholicOrNotP, nameP, imageP)

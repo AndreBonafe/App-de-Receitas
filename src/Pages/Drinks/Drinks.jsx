@@ -4,6 +4,7 @@ import Header from '../../Components/Header';
 import Context from '../../Context/Context';
 import Cards from '../../Components/Cards';
 import Footer from '../../Components/Footer';
+import '../../styles/Details.css';
 
 export default function Drinks(props) {
   const MAX_CATEGORIES = 4;
@@ -55,6 +56,7 @@ export default function Drinks(props) {
       <Header pageName="Bebidas" showSerachIcon fetchFunction={ fetchAPIDrinks } />
       {canRenderCategories && Categories.drinks !== undefined && (
         <button
+          className="categoriaBTN"
           onClick={ () => {
             setFilterCategory('');
             fetchDrinks();
@@ -69,6 +71,7 @@ export default function Drinks(props) {
         Categories.drinks.map((curr, index) => (
           index <= MAX_CATEGORIES && (
             <button
+              className="categoriaBTN"
               type="button"
               key={ index }
               data-testid={ `${curr.strCategory}-category-filter` }

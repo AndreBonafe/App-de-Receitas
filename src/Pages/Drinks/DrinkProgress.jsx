@@ -3,6 +3,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import ShareAndFavoriteBtn from '../../Components/ShareAndFavoriteBtn';
 import Context from '../../Context/Context';
 import '../../styles/Progress.css';
+import '../../styles/Details.css';
 import getCurrentDate from '../../functions/getCurrentDate';
 
 export default function DrinkProgress(props) {
@@ -110,7 +111,7 @@ export default function DrinkProgress(props) {
           <img
             src={ Detail.drinks[0].strDrinkThumb }
             alt="recipe-img"
-            className="img-recipe"
+            className="img-recipe2"
             data-testid="recipe-photo"
           />
           <h1 data-testid="recipe-title">{Detail.drinks[0].strMeal}</h1>
@@ -156,6 +157,7 @@ export default function DrinkProgress(props) {
             ))}
           </ul>
           <button
+            className="btn-start2"
             type="button"
             data-testid="finish-recipe-btn"
             disabled={
@@ -167,7 +169,12 @@ export default function DrinkProgress(props) {
             Finalizar Receita
           </button>
           <h4>Instructions:</h4>
-          <p data-testid="instructions">{Detail.drinks[0].strInstructions}</p>
+          <p
+            className="p-details"
+            data-testid="instructions"
+          >
+            {Detail.drinks[0].strInstructions}
+          </p>
         </>
       )}
     </div>

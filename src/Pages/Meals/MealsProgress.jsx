@@ -110,7 +110,7 @@ export default function MealsProgress(props) {
           <img
             src={ Detail.meals[0].strMealThumb }
             alt="recipe-img"
-            className="img-recipe"
+            className="img-recipe2"
             data-testid="recipe-photo"
           />
           <h1 data-testid="recipe-title">{Detail.meals[0].strMeal}</h1>
@@ -156,6 +156,7 @@ export default function MealsProgress(props) {
             ))}
           </ul>
           <button
+            className="btn-start2"
             type="button"
             data-testid="finish-recipe-btn"
             disabled={
@@ -167,7 +168,12 @@ export default function MealsProgress(props) {
             Finalizar Receita
           </button>
           <h4>Instructions:</h4>
-          <p data-testid="instructions">{Detail.meals[0].strInstructions}</p>
+          <p
+            className="p-details"
+            data-testid="instructions"
+          >
+            {Detail.meals[0].strInstructions}
+          </p>
         </>
       )}
     </div>

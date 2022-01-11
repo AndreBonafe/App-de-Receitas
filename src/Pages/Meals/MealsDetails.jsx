@@ -66,13 +66,13 @@ export default function MealsDetails(props) {
           .filter((key) => key.includes('Measure'));
         return (
           <div key="a">
-            <h2 data-testid="recipe-title">{curr.strMeal}</h2>
             <img
               src={ curr.strMealThumb }
               alt={ curr.strMeal }
               data-testid="recipe-photo"
-              className="img-recipe"
+              className="img-recipe2"
             />
+            <h2 data-testid="recipe-title">{curr.strMeal}</h2>
             <h4 data-testid="recipe-category">{`Category: ${curr.strCategory}`}</h4>
             <ShareAndFavoriteBtn
               link={ history.location.pathname }
@@ -97,7 +97,7 @@ export default function MealsDetails(props) {
               })}
             </ul>
             <h4>Instructions:</h4>
-            <p data-testid="instructions">{curr.strInstructions}</p>
+            <p data-testid="instructions" className="p-details">{curr.strInstructions}</p>
             <iframe src={ `https://www.youtube.com/embed/${curr.strYoutube.split('=')[1]}` } title="youtube-video" data-testid="video" />
             <button
               data-testid="start-recipe-btn"

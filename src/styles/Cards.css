@@ -1,0 +1,28 @@
+.card {
+  max-width: 150px;
+  max-height: 220px;
+  margin-bottom: 50px;
+  padding: 3px;
+  background-color: rgba(71, 184, 33, 0.899);
+}
+
+.card-container {
+  margin-top: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+.card-image {
+  margin-bottom: 10px;
+}
+
+.card-p {
+  color: black;
+  font-weight: bold;
+}
+
+a {
+  text-decoration: none;
+  text-align: center;
+}

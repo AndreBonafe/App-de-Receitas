@@ -1,14 +1,57 @@
 .btn-start {
   bottom: 0;
   position: fixed;
-  text-align: center;
+  margin-left: -315px;
   z-index: 10;
+  border: none;
+  height: 40px;
+  border-radius: 4px;
+  background-color: rgba(71, 184, 33, 0.899);
+  width: 330px;
+  cursor: pointer;
+}
+
+.btn-start2 {
+  bottom: 0;
+  position: fixed;
+  margin-left: 15px;
+  z-index: 10;
+  border: none;
+  height: 40px;
+  border-radius: 4px;
+  background-color: rgba(71, 184, 33, 0.899);
+  width: 330px;
+  cursor: pointer;
 }
 
 .hidden {
   display: none;
 }
 
-.img-recipe {
-  height: 100px;
+.img-recipe2 {
+  height: 230px;
+  width: 370px;
+  object-fit: cover
 }
+
+h2, h4 {
+  text-align: center;
+  margin-top: 10px;
+}
+
+ul {
+  margin-top: 20px;
+}
+
+li {
+  padding: 2px;
+}
+
+.p-details {
+  padding: 25px;
+}
+
+iframe {
+  margin-left: 30px;
+}
+

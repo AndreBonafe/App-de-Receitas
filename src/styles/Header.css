@@ -1,0 +1,11 @@
+.header {
+  background-color: rgba(182, 179, 179, 0.899);
+  padding: 6px;
+  display: flex;
+  width: 400px;
+  justify-content: space-evenly;
+}
+
+.button {
+  border: none;
+}

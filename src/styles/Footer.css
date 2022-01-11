@@ -2,3 +2,13 @@
   bottom: 0;
   position: fixed;
 }
+
+.icones {
+  background-color: rgba(172, 170, 170, 0.543);
+  padding: 10px;
+  width: 700px;
+}
+
+.icon {
+  margin-left: 60px;
+}

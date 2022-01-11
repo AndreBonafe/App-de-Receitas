@@ -4,6 +4,7 @@ import Header from '../../Components/Header';
 import Context from '../../Context/Context';
 import Cards from '../../Components/Cards';
 import Footer from '../../Components/Footer';
+import '../../styles/Meals.css';
 
 export default function Meals(props) {
   const MAX_CATEGORIES = 4;
@@ -55,6 +56,7 @@ export default function Meals(props) {
       <Header pageName="Comidas" showSerachIcon fetchFunction={ fetchAPIMeals } />
       {canRenderCategories && Categories.meals !== undefined && (
         <button
+          className="categoriaBTN"
           onClick={ () => {
             setFilterCategory('');
             fetchMeals();
@@ -69,6 +71,7 @@ export default function Meals(props) {
         Categories.meals.map((curr, index) => (
           index <= MAX_CATEGORIES && (
             <button
+              className="categoriaBTN"
               type="button"
               key={ index }
               data-testid={ `${curr.strCategory}-category-filter` }
