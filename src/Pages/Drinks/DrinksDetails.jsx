@@ -89,10 +89,11 @@ export default function DrinksDetails(props) {
               {Ingredients.map((Ing, i) => {
                 if (curr[Ing] !== '' && curr[Ing] !== null) {
                   return (
-                    <li key={ i } data-testid={ `${i}-ingredient-name-and-measure` }>
-                      {`${curr[Ing]} - ${curr[Measures[i]] === null ? ''
-                        : curr[Measures[i]]}`}
-                    </li>);
+                    curr[Ing] !== null && (
+                      <li key={ i } data-testid={ `${i}-ingredient-name-and-measure` }>
+                        {`${curr[Ing]} - ${curr[Measures[i]] === null ? ''
+                          : curr[Measures[i]]}`}
+                      </li>));
                 }
                 return '';
               })}

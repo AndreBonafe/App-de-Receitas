@@ -36,6 +36,8 @@ function Provider({ children }) {
 
   const [canRenderCategories, setcanRenderCategories] = useState(false);
 
+  const [Areas, setAreas] = useState({});
+
   const fetchAPIMeals = async () => {
     const { input, filter } = SearchValues;
 
@@ -147,6 +149,16 @@ function Provider({ children }) {
       .then((response) => response.json()));
   };
 
+  const fetchAreas = async () => {
+    setAreas(await fetch('https://www.themealdb.com/api/json/v1/1/list.php?a=list')
+      .then((response) => response.json()));
+  };
+
+  const fetchByArea = async (area) => {
+    setRecipes(await fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?a=${area}`)
+      .then((response) => response.json()));
+  };
+
   const store = {
     SearchValues,
     setSearchValues,
@@ -186,6 +198,9 @@ function Provider({ children }) {
     canRenderCategories,
     setcanRenderCategories,
     setCategories,
+    fetchAreas,
+    Areas,
+    fetchByArea,
   };
 
   return (
