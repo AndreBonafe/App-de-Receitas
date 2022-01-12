@@ -1,16 +1,16 @@
 .card {
-  max-width: 150px;
-  max-height: 220px;
-  margin-bottom: 50px;
-  padding: 3px;
   background-color: rgba(71, 184, 33, 0.899);
+  margin-bottom: 50px;
+  max-height: 220px;
+  max-width: 150px;
+  padding: 3px;
 }
 
 .card-container {
-  margin-top: 10px;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
+  margin-top: 10px;
 }
 
 .card-image {
@@ -19,10 +19,15 @@
 
 .card-p {
   color: black;
-  font-weight: bold;
+  font-weight: 500;
 }
 
 a {
-  text-decoration: none;
   text-align: center;
+  text-decoration: none;
+}
+
+.carousel-btn {
+  align-self: center;
+  height: 100px;
 }

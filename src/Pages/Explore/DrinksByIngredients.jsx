@@ -7,6 +7,7 @@ import Context from '../../Context/Context';
 export default function DrinksByIngredients(props) {
   const MAX_CARDS = 11;
   const { history } = props;
+  const TIME = 200;
 
   const { ingredientsList, fetchDrinksIngredients, fetchAPIDrinks, SearchValues,
     setSearchValues, Recipes } = useContext(Context);
@@ -25,9 +26,6 @@ export default function DrinksByIngredients(props) {
     if (SearchValues.filter === 'Ingrediente' && SearchValues.input !== '') {
       fetchAPIDrinks();
     }
-    if (Recipes.drinks !== undefined) {
-      history.push('/bebidas');
-    }
   }, [ingredientsList, fetchDrinksIngredients, SearchValues, setSearchValues, Recipes,
     history, fetchAPIDrinks]);
 
@@ -45,6 +43,11 @@ export default function DrinksByIngredients(props) {
                 ...SearchValues,
                 input: curr.strIngredient1,
               });
+              setTimeout(() => {
+                if (Recipes.drinks !== undefined) {
+                  history.push('/bebidas');
+                }
+              }, TIME);
             } }
           >
             <img

@@ -1,27 +1,27 @@
 .btn-start {
-  bottom: 0;
-  position: fixed;
-  margin-left: -315px;
-  z-index: 10;
-  border: none;
-  height: 40px;
-  border-radius: 4px;
   background-color: rgba(71, 184, 33, 0.899);
-  width: 330px;
+  border: none;
+  border-radius: 4px;
+  bottom: 0;
   cursor: pointer;
+  height: 40px;
+  margin-left: -315px;
+  position: fixed;
+  width: 330px;
+  z-index: 10;
 }
 
 .btn-start2 {
-  bottom: 0;
-  position: fixed;
-  margin-left: 15px;
-  z-index: 10;
-  border: none;
-  height: 40px;
-  border-radius: 4px;
   background-color: rgba(71, 184, 33, 0.899);
-  width: 330px;
+  border: none;
+  border-radius: 4px;
+  bottom: 0;
   cursor: pointer;
+  height: 40px;
+  margin-left: 15px;
+  position: fixed;
+  width: 330px;
+  z-index: 10;
 }
 
 .hidden {
@@ -30,13 +30,13 @@
 
 .img-recipe2 {
   height: 230px;
-  width: 370px;
-  object-fit: cover
+  object-fit: cover;
+  width: 360px;
 }
 
 h2, h4 {
-  text-align: center;
   margin-top: 10px;
+  text-align: center;
 }
 
 ul {

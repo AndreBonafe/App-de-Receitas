@@ -18,7 +18,12 @@ export default function Cards({ recipes, type, link }) {
                 alt={ `${curr[`str${type}`]}` }
                 data-testid={ `${index}-card-img` }
               />
-              <p data-testid={ `${index}-card-name` } className="card-p">{ curr[`str${type}`] }</p>
+              <p
+                data-testid={ `${index}-card-name` }
+                className="card-p"
+              >
+                { curr[`str${type}`] }
+              </p>
             </div>
           </Link>)
       ))}
