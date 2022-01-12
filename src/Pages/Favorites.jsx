@@ -10,7 +10,7 @@ export default function Favorites() {
   const { setFavoritesRecipes, favoritesRecipes } = useContext(Context);
   const TIME = 800;
 
-  const [showMessageCopy, setShowMessageCopy] = useState(false);
+  const [showMessageCopy, setShowMessageCopy] = useState({});
 
   const [canSave, setCanSave] = useState(false);
 
@@ -23,7 +23,9 @@ export default function Favorites() {
   }, [setFavoritesRecipes]);
 
   useEffect(() => {
-    if (showMessageCopy) setTimeout(() => setShowMessageCopy(false), TIME);
+    if (Object.values(showMessageCopy).some((c) => c === true)) {
+      setTimeout(() => setShowMessageCopy({}), TIME);
+    }
     if (canSave) {
       localStorage.setItem('favoriteRecipes', JSON.stringify(favoritesRecipes));
       setCanSave(false);
@@ -99,7 +101,7 @@ export default function Favorites() {
                   onClick={ () => {
                     if (curr.type === 'comida') navigator.clipboard.writeText(`http://localhost:3000/comidas/${curr.id}`);
                     else navigator.clipboard.writeText(`http://localhost:3000/bebidas/${curr.id}`);
-                    setShowMessageCopy(true);
+                    setShowMessageCopy({ [i]: true });
                   } }
                 >
                   <img
@@ -108,7 +110,7 @@ export default function Favorites() {
                     data-testid={ `${i}-horizontal-share-btn` }
                   />
                 </button>
-                {showMessageCopy && <span>Link copiado!</span>}
+                {showMessageCopy[i] && <span>Link copiado!</span>}
                 <button
                   className="fav-fav"
                   type="button"

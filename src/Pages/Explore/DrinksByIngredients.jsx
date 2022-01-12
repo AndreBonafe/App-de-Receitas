@@ -25,9 +25,6 @@ export default function DrinksByIngredients(props) {
     if (SearchValues.filter === 'Ingrediente' && SearchValues.input !== '') {
       fetchAPIDrinks();
     }
-    if (Recipes.drinks !== undefined) {
-      history.push('/bebidas');
-    }
   }, [ingredientsList, fetchDrinksIngredients, SearchValues, setSearchValues, Recipes,
     history, fetchAPIDrinks]);
 

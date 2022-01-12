@@ -10,7 +10,7 @@ export default function Done() {
   const { setDoneRecipes, doneRecipes } = useContext(Context);
   const TIME = 800;
 
-  const [showMessageCopy, setShowMessageCopy] = useState(false);
+  const [showMessageCopy, setShowMessageCopy] = useState({});
 
   const [filter, setFilter] = useState('');
 
@@ -21,7 +21,9 @@ export default function Done() {
   }, [setDoneRecipes]);
 
   useEffect(() => {
-    if (showMessageCopy) setTimeout(() => setShowMessageCopy(false), TIME);
+    if (Object.values(showMessageCopy).some((c) => c === true)) {
+      setTimeout(() => setShowMessageCopy({}), TIME);
+    }
   }, [showMessageCopy]);
 
   return (
@@ -90,7 +92,7 @@ export default function Done() {
                 onClick={ () => {
                   if (curr.type === 'comida') navigator.clipboard.writeText(`http://localhost:3000/comidas/${curr.id}`);
                   else navigator.clipboard.writeText(`http://localhost:3000/bebidas/${curr.id}`);
-                  setShowMessageCopy(true);
+                  setShowMessageCopy({ [i]: true });
                 } }
               >
                 <img
@@ -101,7 +103,7 @@ export default function Done() {
               </button>
             </div>
             <div className="tag">
-              {showMessageCopy && <span>Link copiado!</span>}
+              {showMessageCopy[i] && <span>Link copiado!</span>}
               {curr.tags.length > 0 && <h3>Tags:</h3>}
               {curr.tags.map((c, index) => (
                 index <= 1 && (

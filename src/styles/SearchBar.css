@@ -1,10 +1,7 @@
-.searchContainer {
-  margin-top: -20px;
-}
-
 .searchInput {
-  width: 353px;
+  margin-bottom: 10px;
   margin-left: 5px;
+  width: 353px;
 }
 
 .item {
@@ -16,12 +13,12 @@
 }
 
 .searchButton {
+  background-color: rgba(71, 184, 33, 0.899);
   border: none;
   border-radius: 3px;
-  margin-left: 6px;
-  margin-bottom: 6px;
-  margin-top: 4px;
   height: 35px;
+  margin-bottom: 6px;
+  margin-left: 6px;
+  margin-top: 4px;
   width: 112px;
-  background-color: rgba(71, 184, 33, 0.899);
 }

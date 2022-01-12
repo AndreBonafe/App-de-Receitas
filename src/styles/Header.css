@@ -1,13 +1,15 @@
 .header {
+  align-items: center;
   background-color: rgba(182, 179, 179, 0.899);
-  padding: 6px;
   display: flex;
-  width: 400px;
-  justify-content: space-evenly;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 10px;
+  width: 360px;
   align-items: center;
 }
 
 .button {
-  border: none;
   background-color: rgba(182, 179, 179, 0);
+  border: none;
 }

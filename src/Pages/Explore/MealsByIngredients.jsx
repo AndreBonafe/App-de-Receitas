@@ -25,9 +25,6 @@ export default function MealsByIngredients(props) {
     if (SearchValues.filter === 'Ingrediente' && SearchValues.input !== '') {
       fetchAPIMeals();
     }
-    if (Recipes.meals !== undefined) {
-      history.push('/comidas');
-    }
   }, [ingredientsList, fetchMealIngredients, SearchValues, setSearchValues, Recipes,
     history, fetchAPIMeals]);
 
