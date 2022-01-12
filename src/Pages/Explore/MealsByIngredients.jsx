@@ -34,27 +34,31 @@ export default function MealsByIngredients(props) {
   return (
     <div>
       <Header pageName="Explorar Ingredientes" showSerachIcon={ false } />
-      {canRender && ingredientsList.meals.map((curr, i) => (
-        i <= MAX_CARDS && (
-          <button
-            key={ i }
-            data-testid={ `${i}-ingredient-card` }
-            type="button"
-            onClick={ () => {
-              setSearchValues({
-                ...SearchValues,
-                input: curr.strIngredient,
-              });
-            } }
-          >
-            <img
-              src={ `https://www.themealdb.com/images/ingredients/${curr.strIngredient}-Small.png` }
-              alt={ i }
-              data-testid={ `${i}-card-img` }
-            />
-            <span data-testid={ `${i}-card-name` }>{curr.strIngredient}</span>
-          </button>)
-      ))}
+      <div className="cont-explore-ing">
+        {canRender && ingredientsList.meals.map((curr, i) => (
+          i <= MAX_CARDS && (
+            <button
+              className="btn-explore-ing"
+              key={ i }
+              data-testid={ `${i}-ingredient-card` }
+              type="button"
+              onClick={ () => {
+                setSearchValues({
+                  ...SearchValues,
+                  input: curr.strIngredient,
+                });
+              } }
+            >
+              <img
+                className="img-explore"
+                src={ `https://www.themealdb.com/images/ingredients/${curr.strIngredient}-Small.png` }
+                alt={ i }
+                data-testid={ `${i}-card-img` }
+              />
+              <span data-testid={ `${i}-card-name` }>{curr.strIngredient}</span>
+            </button>)
+        ))}
+      </div>
       <Footer />
     </div>
   );

@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import Footer from '../Components/Footer';
 import Header from '../Components/Header';
+import '../styles/Profile.css';
 
 export default function Profile(props) {
   const { history } = props;
@@ -17,31 +18,36 @@ export default function Profile(props) {
   return (
     <div>
       <Header pageName="Perfil" showSerachIcon={ false } />
-      <h1 data-testid="profile-email">{User}</h1>
-      <button
-        data-testid="profile-done-btn"
-        type="button"
-        onClick={ () => history.push('/receitas-feitas') }
-      >
-        Receitas Feitas
-      </button>
-      <button
-        data-testid="profile-favorite-btn"
-        type="button"
-        onClick={ () => history.push('/receitas-favoritas') }
-      >
-        Receitas Favoritas
-      </button>
-      <button
-        data-testid="profile-logout-btn"
-        type="button"
-        onClick={ () => {
-          localStorage.clear();
-          history.push('/');
-        } }
-      >
-        Sair
-      </button>
+      <div className="cont-profile ">
+        <h1 data-testid="profile-email">{User}</h1>
+        <button
+          className="btn-profile"
+          data-testid="profile-done-btn"
+          type="button"
+          onClick={ () => history.push('/receitas-feitas') }
+        >
+          Receitas Feitas
+        </button>
+        <button
+          className="btn-profile"
+          data-testid="profile-favorite-btn"
+          type="button"
+          onClick={ () => history.push('/receitas-favoritas') }
+        >
+          Receitas Favoritas
+        </button>
+        <button
+          className="btn-profile"
+          data-testid="profile-logout-btn"
+          type="button"
+          onClick={ () => {
+            localStorage.clear();
+            history.push('/');
+          } }
+        >
+          Sair
+        </button>
+      </div>
       <Footer />
     </div>
   );

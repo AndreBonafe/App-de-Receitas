@@ -1,0 +1,46 @@
+.done-btn {
+  border: none;
+  border-radius: 3px;
+  background: rgb(237, 14, 14);
+  height: 35px;
+  width: 112px;
+  padding: 4px;
+  margin: 4px;
+}
+
+.done-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 20px;
+  background-color: rgba(77, 78, 76, 0.194);
+  width: 300px;
+  border-radius: 4px;
+  margin-left: 30px;
+  margin-top: 20px;
+}
+
+.done-img {
+  text-align: center;
+}
+
+.text, .tag {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.done-share {
+  border: none;
+  background-color: rgba(77, 78, 76, 0);
+  margin-left: 50px;
+}
+
+.title-done {
+  text-align: center;
+  color: black;
+}
+
+.info {
+  margin-left: 5px;
+}

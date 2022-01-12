@@ -4,8 +4,10 @@
   display: flex;
   width: 400px;
   justify-content: space-evenly;
+  align-items: center;
 }
 
 .button {
   border: none;
+  background-color: rgba(182, 179, 179, 0);
 }

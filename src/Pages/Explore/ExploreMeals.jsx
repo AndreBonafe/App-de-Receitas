@@ -18,30 +18,35 @@ export default function ExploreMeals(props) {
   return (
     <div>
       <Header pageName="Explorar Comidas" showSerachIcon={ false } />
-      <button
-        type="button"
-        data-testid="explore-by-ingredient"
-        onClick={ () => history.push('/explorar/comidas/ingredientes') }
-      >
-        Por Ingredientes
-      </button>
-      <button
-        type="button"
-        data-testid="explore-by-area"
-        onClick={ () => history.push('/explorar/comidas/area') }
-      >
-        Por Local de Origem
-      </button>
-      <button
-        data-testid="explore-surprise"
-        type="button"
-        onClick={ () => {
-          fetchSurpriseMeal();
-          fetchDrinks();
-        } }
-      >
-        Me Surpreenda!
-      </button>
+      <div className="cont-explore">
+        <button
+          className="btn-explore"
+          type="button"
+          data-testid="explore-by-ingredient"
+          onClick={ () => history.push('/explorar/comidas/ingredientes') }
+        >
+          Por Ingredientes
+        </button>
+        <button
+          className="btn-explore"
+          type="button"
+          data-testid="explore-by-area"
+          onClick={ () => history.push('/explorar/comidas/area') }
+        >
+          Por Local de Origem
+        </button>
+        <button
+          className="btn-explore"
+          data-testid="explore-surprise"
+          type="button"
+          onClick={ () => {
+            fetchSurpriseMeal();
+            fetchDrinks();
+          } }
+        >
+          Me Surpreenda!
+        </button>
+      </div>
       <Footer />
     </div>
   );

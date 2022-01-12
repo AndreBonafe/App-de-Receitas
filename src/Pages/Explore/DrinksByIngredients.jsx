@@ -34,27 +34,30 @@ export default function DrinksByIngredients(props) {
   return (
     <div>
       <Header pageName="Explorar Ingredientes" showSerachIcon={ false } />
-      {canRender && ingredientsList.drinks.map((curr, i) => (
-        i <= MAX_CARDS && (
-          <button
-            key={ i }
-            data-testid={ `${i}-ingredient-card` }
-            type="button"
-            onClick={ () => {
-              setSearchValues({
-                ...SearchValues,
-                input: curr.strIngredient1,
-              });
-            } }
-          >
-            <img
-              src={ `https://www.thecocktaildb.com/images/ingredients/${curr.strIngredient1}-Small.png` }
-              alt={ i }
-              data-testid={ `${i}-card-img` }
-            />
-            <span data-testid={ `${i}-card-name` }>{curr.strIngredient1}</span>
-          </button>)
-      ))}
+      <div className="cont-explore-ing">
+        {canRender && ingredientsList.drinks.map((curr, i) => (
+          i <= MAX_CARDS && (
+            <button
+              className="btn-explore-ing"
+              key={ i }
+              data-testid={ `${i}-ingredient-card` }
+              type="button"
+              onClick={ () => {
+                setSearchValues({
+                  ...SearchValues,
+                  input: curr.strIngredient1,
+                });
+              } }
+            >
+              <img
+                src={ `https://www.thecocktaildb.com/images/ingredients/${curr.strIngredient1}-Small.png` }
+                alt={ i }
+                data-testid={ `${i}-card-img` }
+              />
+              <span data-testid={ `${i}-card-name` }>{curr.strIngredient1}</span>
+            </button>)
+        ))}
+      </div>
       <Footer />
     </div>
   );
