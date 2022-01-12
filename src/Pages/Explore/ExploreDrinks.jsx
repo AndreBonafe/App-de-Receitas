@@ -5,15 +5,17 @@ import Header from '../../Components/Header';
 import Context from '../../Context/Context';
 
 export default function ExploreDrinks(props) {
+  const TIME = 200;
   const { history } = props;
 
-  const { fetchSurpriseDrink, Detail, Recipes, fetchMeals } = useContext(Context);
+  const { fetchSurpriseDrink, Detail, fetchMeals } = useContext(Context);
 
   useEffect(() => {
-    if (Detail.drinks !== undefined && Recipes.meals !== undefined) {
-      history.push(`/bebidas/${Detail.drinks[0].idDrink}`);
+    if (Detail.drinks === undefined) {
+      fetchSurpriseDrink();
+      fetchMeals();
     }
-  }, [Detail, history, Recipes]);
+  }, [fetchSurpriseDrink, fetchMeals, Detail]);
 
   return (
     <div>
@@ -29,8 +31,9 @@ export default function ExploreDrinks(props) {
         data-testid="explore-surprise"
         type="button"
         onClick={ () => {
-          fetchSurpriseDrink();
-          fetchMeals();
+          setTimeout(() => {
+            history.push(`/bebidas/${Detail.drinks[0].idDrink}`);
+          }, TIME);
         } }
       >
         Me Surpreenda!
