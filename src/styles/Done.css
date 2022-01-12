@@ -1,23 +1,23 @@
 .done-btn {
+  background: rgb(237, 14, 14);
   border: none;
   border-radius: 3px;
-  background: rgb(237, 14, 14);
   height: 35px;
-  width: 112px;
-  padding: 4px;
   margin: 4px;
+  padding: 4px;
+  width: 112px;
 }
 
 .done-card {
+  background-color: rgba(77, 78, 76, 0.194);
+  border-radius: 4px;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 20px;
-  background-color: rgba(77, 78, 76, 0.194);
-  width: 300px;
-  border-radius: 4px;
   margin-left: 30px;
   margin-top: 20px;
+  padding: 20px;
+  width: 300px;
 }
 
 .done-img {
@@ -25,20 +25,20 @@
 }
 
 .text, .tag {
+  align-items: center;
   display: flex;
   justify-content: center;
-  align-items: center;
 }
 
 .done-share {
-  border: none;
   background-color: rgba(77, 78, 76, 0);
+  border: none;
   margin-left: 50px;
 }
 
 .title-done {
-  text-align: center;
   color: black;
+  text-align: center;
 }
 
 .info {
