@@ -7,7 +7,7 @@ import Context from '../../Context/Context';
 export default function DrinksByIngredients(props) {
   const MAX_CARDS = 11;
   const { history } = props;
-  const TIME = 200;
+  const TIME = 300;
 
   const { ingredientsList, fetchDrinksIngredients, fetchAPIDrinks, SearchValues,
     setSearchValues, Recipes } = useContext(Context);
@@ -44,9 +44,7 @@ export default function DrinksByIngredients(props) {
                 input: curr.strIngredient1,
               });
               setTimeout(() => {
-                if (Recipes.drinks !== undefined) {
-                  history.push('/bebidas');
-                }
+                history.push('/bebidas');
               }, TIME);
             } }
           >
