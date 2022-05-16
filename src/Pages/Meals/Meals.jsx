@@ -51,12 +51,17 @@ export default function Meals(props) {
     }
   }
 
+  function check() {
+    return (filterCategory === ''
+      ? 'selected categoriaBTN' : 'categoriaBTN');
+  }
+
   return (
     <div>
-      <Header pageName="Comidas" showSerachIcon fetchFunction={ fetchAPIMeals } />
+      <Header pageName="Meals" showSerachIcon fetchFunction={ fetchAPIMeals } />
       {canRenderCategories && Categories.meals !== undefined && (
         <button
-          className="categoriaBTN"
+          className={ check() }
           onClick={ () => {
             setFilterCategory('');
             fetchMeals();
@@ -71,7 +76,8 @@ export default function Meals(props) {
         Categories.meals.map((curr, index) => (
           index <= MAX_CATEGORIES && (
             <button
-              className="categoriaBTN"
+              className={ filterCategory === curr.strCategory
+                ? 'selected categoriaBTN' : 'categoriaBTN' }
               type="button"
               key={ index }
               data-testid={ `${curr.strCategory}-category-filter` }

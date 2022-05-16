@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import '../styles/Login.css';
+import logo from '../images/logo-temp.png';
 
 export default function Login(props) {
   const [email, setEmail] = useState('');
@@ -25,22 +26,22 @@ export default function Login(props) {
 
   return (
     <div className="body-login">
+      <img src={ logo } alt="logo" className="logo" />
       <div className="center">
-        <h1>Login</h1>
-        <label htmlFor="email">
+        <label htmlFor="email" className="label-login">
           Email:
           <input
-            className="input2"
+            className="input-login email"
             type="text"
             id="email"
             data-testid="email-input"
             onChange={ ({ target: { value } }) => setEmail(value) }
           />
         </label>
-        <label htmlFor="senha">
+        <label htmlFor="senha" className="label-login">
           Senha:
           <input
-            className="input"
+            className="input-login senha"
             type="password"
             id="senha"
             data-testid="password-input"

@@ -1,14 +1,19 @@
 .header {
   align-items: center;
-  background-color: rgba(182, 179, 179, 0.899);
+  background-color: rgb(189, 9, 9);
+  color: rgb(247, 244, 244);
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   padding: 10px;
-  width: 360px;
+  width: 100%;
 }
 
 .button {
   background-color: rgba(182, 179, 179, 0);
   border: none;
+}
+
+.header img {
+  filter: invert();
 }

@@ -2,17 +2,22 @@
   bottom: 0;
   left: 0;
   position: fixed;
+  width: 100%;
   z-index: 10;
 }
 
 .icones {
-  background-color: rgba(172, 170, 170, 0.543);
-  padding: 10px;
-  width: 700px;
+  background-color: rgb(247, 244, 244);
+  display: flex;
+  justify-content: space-around;
+  padding-bottom: 10px;
+  padding-top: 10px;
 }
 
 .icon {
-  margin-left: 60px;
+  height: 40px;
+  padding: 0;
+  width: 40px;
 }
 
 body {

@@ -1,13 +1,20 @@
+.categoriaBTN.selected {
+  border: 2px solid rgb(112, 9, 9);
+  box-shadow: 1px 3px 5px 2px rgba(0, 0, 0, 0.41);
+  height: 40px;
+}
+
 .categoriaBTN {
-  background: rgb(237, 14, 14);
+  background: rgb(189, 9, 9);
   border: none;
-  border-radius: 3px;
+  border-radius: 10px;
+  color: rgb(247, 244, 244);
   height: 35px;
   margin: 4px;
   padding: 4px;
   width: 112px;
 }
 
-.categoriaBTN :hover {
-  background: rgb(107, 14, 237);
+.categoriaBTN:hover {
+  background: rgb(199, 10, 10);
 }

@@ -53,7 +53,7 @@ export default function Drinks(props) {
 
   return (
     <div>
-      <Header pageName="Bebidas" showSerachIcon fetchFunction={ fetchAPIDrinks } />
+      <Header pageName="Drinks" showSerachIcon fetchFunction={ fetchAPIDrinks } />
       {canRenderCategories && Categories.drinks !== undefined && (
         <button
           className="categoriaBTN"

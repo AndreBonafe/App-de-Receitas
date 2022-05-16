@@ -1,6 +1,7 @@
 .card {
-  background-color: rgba(71, 184, 33, 0.899);
-  margin-bottom: 50px;
+  background-color: rgb(189, 9, 9);
+  border-radius: 25px;
+  margin-bottom: 25px;
   max-height: 220px;
   max-width: 150px;
   padding: 3px;
@@ -10,16 +11,26 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
+  margin-bottom: 50px;
   margin-top: 10px;
 }
 
 .card-image {
-  margin-bottom: 10px;
+  border-radius: 50%;
+  padding: 5px;
 }
 
 .card-p {
-  color: black;
+  color: rgb(247, 244, 244);
   font-weight: 500;
+}
+
+.icon {
+  opacity: 35%;
+}
+
+.selected.icon {
+  opacity: 100%;
 }
 
 a {

@@ -15,45 +15,47 @@ export default function SearchBar({ fetchFunction }) {
         onChange={ ({ target: { value } }) => (
           setSearchValues({ ...SearchValues, input: value })) }
       />
-      <label htmlFor="ingredient-search-radio" className="item">
-        Ingrediente
-        <input
-          className="radio"
-          type="radio"
-          data-testid="ingredient-search-radio"
-          id="ingredient-search-radio"
-          name="search-radio"
-          value="Ingrediente"
-          onClick={ ({ target: { value } }) => (
-            setSearchValues({ ...SearchValues, filter: value })) }
-        />
-      </label>
-      <label htmlFor="name-search-radio" className="item">
-        Nome
-        <input
-          className="radio"
-          type="radio"
-          data-testid="name-search-radio"
-          id="name-search-radio"
-          name="search-radio"
-          value="Nome"
-          onClick={ ({ target: { value } }) => (
-            setSearchValues({ ...SearchValues, filter: value })) }
-        />
-      </label>
-      <label htmlFor="first-letter-search-radio" className="item">
-        Primeira Letra
-        <input
-          className="radio"
-          type="radio"
-          data-testid="first-letter-search-radio"
-          id="first-letter-search-radio"
-          name="search-radio"
-          value="Primeira letra"
-          onClick={ ({ target: { value } }) => (
-            setSearchValues({ ...SearchValues, filter: value })) }
-        />
-      </label>
+      <div className="filters-and-button">
+        <label htmlFor="ingredient-search-radio" className="item">
+          Ingredient
+          <input
+            className="radio"
+            type="radio"
+            data-testid="ingredient-search-radio"
+            id="ingredient-search-radio"
+            name="search-radio"
+            value="Ingrediente"
+            onClick={ ({ target: { value } }) => (
+              setSearchValues({ ...SearchValues, filter: value })) }
+          />
+        </label>
+        <label htmlFor="name-search-radio" className="item">
+          Name
+          <input
+            className="radio"
+            type="radio"
+            data-testid="name-search-radio"
+            id="name-search-radio"
+            name="search-radio"
+            value="Nome"
+            onClick={ ({ target: { value } }) => (
+              setSearchValues({ ...SearchValues, filter: value })) }
+          />
+        </label>
+        <label htmlFor="first-letter-search-radio" className="item">
+          First Letter
+          <input
+            className="radio"
+            type="radio"
+            data-testid="first-letter-search-radio"
+            id="first-letter-search-radio"
+            name="search-radio"
+            value="Primeira letra"
+            onClick={ ({ target: { value } }) => (
+              setSearchValues({ ...SearchValues, filter: value })) }
+          />
+        </label>
+      </div>
       <button
         className="searchButton"
         type="button"
@@ -63,7 +65,7 @@ export default function SearchBar({ fetchFunction }) {
           fetchFunction();
         } }
       >
-        Buscar
+        Search
       </button>
     </div>
   );

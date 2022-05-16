@@ -1,24 +1,48 @@
+.filters-and-button {
+  align-items: center;
+  display: flex;
+  justify-content: space-around;
+  padding: 2px;
+}
+
+.searchContainer {
+  display: flex;
+  flex-direction: column;
+}
+
 .searchInput {
+  align-self: center;
+  background-color: rgb(247, 244, 244);
+  border: none;
+  border-radius: 15px;
+  box-shadow: 1px 3px 5px 2px rgba(0, 0, 0, 0.41);
+  height: 25px;
   margin-bottom: 10px;
   margin-left: 5px;
-  width: 353px;
+  width: 75%;
 }
 
 .item {
+  align-items: center;
+  display: flex;
   margin-left: 15px;
 }
 
 .radio {
+  align-self: center;
   margin-left: 4px;
 }
 
 .searchButton {
-  background-color: rgba(71, 184, 33, 0.899);
+  align-self: center;
+  background-color: rgb(189, 9, 9);
   border: none;
-  border-radius: 3px;
+  border-radius: 25px;
+  box-shadow: 1px 3px 5px 2px rgba(0, 0, 0, 0.41);
+  color: rgb(247, 244, 244);
   height: 35px;
-  margin-bottom: 6px;
+  margin-bottom: 15px;
   margin-left: 6px;
-  margin-top: 4px;
-  width: 112px;
+  margin-top: 15px;
+  width: 75%;
 }

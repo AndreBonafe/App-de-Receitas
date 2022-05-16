@@ -3,46 +3,57 @@ body {
   font-size: 11px;
 }
 
+.logo {
+  align-self: center;
+  height: 100px;
+  margin-top: 75px;
+}
+
 .body-login {
-  background-image: url('https://a-static.mlcdn.com.br/618x463/papel-de-parede-para-cozinha-copa-lanchonete-adesivo-bege-com-comida-pizza-refrigerante-sorvete-10-m-toque-pop/toquepop/ppc045-3m/4a92a2ce85ce424ecdfd1097625e4203.jpg');
-  background-size: cover;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
   height: 100%;
-  position: absolute;
   width: 100%;
 }
 
 .center {
-  background-color: rgba(172, 170, 170, 0.747);
-  border-radius: 6px;
-  height: 400px;
-  margin: auto;
-  margin-top: 100px;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  margin-top: 40px;
   padding: 15px;
-  width: 220px;
-}
-
-h1 {
-  margin-bottom: 50px;
-  margin-top: 20px;
-  text-align: center;
+  width: 100%;
 }
 
 .botao {
   background: rgb(237, 14, 14);
   border: none;
-  border-radius: 4px;
+  border-radius: 25px;
+  color: rgb(247, 244, 244);
+  height: 35px;
   margin-top: 15px;
   padding: 5px;
-  width: 185px;
+  width: 250px;
 }
 
-.input {
-  margin-bottom: 10px;
-  margin-left: 5px;
+.input-login {
+  background-color: rgba(247, 244, 244, 0.747);
+  border: none;
+  border-radius: 25px;
+  box-shadow: 3px 5px 10px 4px rgba(0, 0, 0, 0.41);
+  font-size: 20px;
+  height: 35px;
+  margin-bottom: 25px;
+  width: 250px;
 }
 
-.input2 {
-  margin-bottom: 10px;
-  margin-left: 9px;
+.label-login {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  font-family: sans-serif;
+  font-size: 20px;
+  justify-content: center;
 }
-
